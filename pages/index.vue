@@ -1,20 +1,12 @@
 <!-- pages/index.vue -->
 <template>
   <main class="min-h-screen bg-slate-100 px-4 py-6">
-    <section
-      class="board mx-auto max-w-5xl rounded-[26px] border border-slate-200 bg-white px-3 pb-5 pt-4 shadow-lg"
-    >
+    <section class="board mx-auto max-w-5xl rounded-[26px] border border-slate-200 bg-white px-3 pb-5 pt-4 shadow-lg">
       <!-- Header row -->
-      <header
-        class="grid grid-cols-[minmax(0,1fr)_220px_200px] items-center px-3 pt-1 pb-2"
-      >
+      <header class="grid grid-cols-[minmax(0,1fr)_220px_200px] items-center px-3 pt-1 pb-2">
         <div></div>
-        <div class="text-center text-sm font-semibold text-slate-500">
-          Download Template
-        </div>
-        <div class="text-center text-sm font-semibold text-slate-500">
-          Upload .csv file
-        </div>
+        <div class="text-center text-sm font-semibold text-slate-500">Download Template</div>
+        <div class="text-center text-sm font-semibold text-slate-500">Upload .csv file</div>
       </header>
 
       <!-- Rows -->
@@ -103,12 +95,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
-import ImportRow from '~/components/imports/ImportRow.vue'
-import ImportConsole from '~/components/imports/ImportConsole.vue'
-import { rows, type ImportRow as Row } from '~/data/importRows'
-import { useUploader } from '~/composables/useUploader'
-import { useImportState, type ImportKey } from '~/composables/useImportState'
+import { ref, nextTick } from "vue"
+import ImportRow from "~/components/imports/ImportRow.vue"
+import ImportConsole from "~/components/imports/ImportConsole.vue"
+import { rows, type ImportRow as Row } from "~/data/importRows"
+import { useUploader } from "~/composables/useUploader"
+import { useImportState, type ImportKey } from "~/composables/useImportState"
 
 // --- File input refs ---
 const empInput = ref<HTMLInputElement | null>(null)
@@ -124,48 +116,45 @@ const { uploading, summaries, errors, isUploading, resetFor } = useImportState()
 // Helpers from composable
 const { downloadTemplate, doUpload } = useUploader()
 
-function handleUploadClick(key: Row['key']) {
-  if (key === 'employees') empInput.value?.click()
-  else if (key === 'staff') staffInput.value?.click()
-  else if (key === 'equipment') equipInput.value?.click()
-  else if (key === 'jobs') jobsInput.value?.click()
-  else if (key === 'tasks') tasksInput.value?.click()
-  else if (key === 'customers') customersInput.value?.click()
+function handleUploadClick(key: Row["key"]) {
+  if (key === "employees") empInput.value?.click()
+  else if (key === "staff") staffInput.value?.click()
+  else if (key === "equipment") equipInput.value?.click()
+  else if (key === "jobs") jobsInput.value?.click()
+  else if (key === "tasks") tasksInput.value?.click()
+  else if (key === "customers") customersInput.value?.click()
 }
 
 // Map row key -> endpoint/label
-const endpointMap: Record<
-  ImportKey,
-  { endpoint: string; label: string; inputRef: any }
-> = {
+const endpointMap: Record<ImportKey, { endpoint: string; label: string; inputRef: any }> = {
   employees: {
-    endpoint: '/api/crew/employees',
-    label: 'Employees & Foreman',
+    endpoint: "/api/crew/employees",
+    label: "Employees & Foreman",
     inputRef: empInput,
   },
   staff: {
-    endpoint: '/api/crew/staff',
-    label: 'Staff',
+    endpoint: "/api/crew/staff",
+    label: "Staff",
     inputRef: staffInput,
   },
   equipment: {
-    endpoint: '/api/crew/equipment',
-    label: 'Equipment',
+    endpoint: "/api/crew/equipment",
+    label: "Equipment",
     inputRef: equipInput,
   },
   jobs: {
-    endpoint: '/api/crew/jobs',
-    label: 'Jobs',
+    endpoint: "/api/crew/jobs",
+    label: "Jobs",
     inputRef: jobsInput,
   },
   tasks: {
-    endpoint: '/api/crew/tasks',
-    label: 'Tasks',
+    endpoint: "/api/crew/tasks",
+    label: "Tasks",
     inputRef: tasksInput,
   },
   customers: {
-    endpoint: '/api/crew/customers',
-    label: 'Customers',
+    endpoint: "/api/crew/customers",
+    label: "Customers",
     inputRef: customersInput,
   },
 }
@@ -185,12 +174,10 @@ async function onPicked(e: Event, key: ImportKey) {
     summaries[key].value = summaryLine
     errors[key].value = rowErrors
   } finally {
-    if (inputRef.value) inputRef.value.value = ''
+    if (inputRef.value) inputRef.value.value = ""
     uploading[key].value = false
     await nextTick()
-    document
-      .querySelector('.board')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    document.querySelector(".board")?.scrollIntoView({ behavior: "smooth", block: "end" })
   }
 }
 </script>
