@@ -1,3 +1,3 @@
 ﻿Required,,Required,Required,,,,,
-Name First and Last,Employee ID,Email,Password,Cell Phone,Payroll,Jobs,Users,Analysis
+Name First and Last,Employee ID,Email,Password (6 Characters minimum),Cell Phone,Payroll,Jobs,Users,Analysis
 Grace Smice,87945,grace@gmail.com,secret123,325-698-9874,Y,,Y,
