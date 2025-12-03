@@ -1,3 +1,3 @@
-﻿Required,,,,,,
-Job Name,Job Number,Street Address 2,City ,State,Zip,Country (2 letter ISO CODE)
-Warehouse B,896,5358 Poole Rd.,Archdale,NC,27350,US
+﻿Required,,,,,,,
+Job Name,Job Number,Street Address ,Address Line 2,City ,State,Zip,Country (2 letter ISO CODE)
+Warehouse B,896,5358 Poole Rd.,PO Box 234,Archdale,NC,27350,US
